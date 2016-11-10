@@ -45,6 +45,14 @@
           <% end %>
         </li>
       </ul>
+      <li>
+      <% if current_user %>
+        Signed in as <%= current_user.name %> | <%= link_to "Logout", '/sessions/destroy', method: 'DELETE' %>
+      <% else %>
+        <%= link_to 'Login', '/sessions/new' %> | <%= link_to 'Signup', '/users/new'  %>
+      <% end %>
+
+      </li>
     </div>
   </div>
 </nav>
