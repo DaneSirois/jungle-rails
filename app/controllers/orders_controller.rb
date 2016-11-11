@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @line_items = @order.line_items
+
+
+    UserMailer.receipt_email(@order, @line_items).deliver_now
   end
 
   def create
