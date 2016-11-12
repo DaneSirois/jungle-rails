@@ -24,6 +24,28 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
+
+      <div class="col-sm-8 review-container">
+       <div class="review-input">
+        <%= form_for [@product, @review] do |f| %>
+          <p> <%= f.label :rating %> </p>
+          <p> <%= f.select :rating, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]  %> </p>
+          <p> <%= f.label :description %> </p>
+          <p> <%= f.text_area :description %> </p>
+         <p> <%= f.submit "Submit Review" %> </p>
+        <% end %>
+    </div>
+      <p>Comments: </p>
+      <ul class="review-list">
+        <% @product.reviews.reverse.each do |review| %>
+          <% @review = review %>
+          <% @user = review.user %>
+          <%= render partial: "review", locals: {review: @review, user: @user } %>
+
+          <%# render partial: "review", object: @review %>
+        <% end %>
+      </ul>
+      </div>
     </div>
 
   </article>
