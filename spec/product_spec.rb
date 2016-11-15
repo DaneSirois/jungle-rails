@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe 'Validations' do
     # validation tests/examples here
-    it 'should have a name' do
+    it 'Passes validations' do
       @category = Category.new({name: 'Food'})
       @product = Product.new({name: 'Burger', price: 10, quantity: 2, category: @category})
       @product.save
