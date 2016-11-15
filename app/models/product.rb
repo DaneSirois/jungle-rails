@@ -11,4 +11,17 @@ class Product < ActiveRecord::Base
   validates :quantity, presence: true
   validates :category, presence: true
 
+  def average_rating
+    average = 0
+
+    if reviews.count > 0
+      average = reviews.inject(0) { |sum, value| sum + value.rating.to_i } / reviews.count
+    end
+
+    average
+  end
+
+  def sold_out?
+    quantity == 0
+  end
 end

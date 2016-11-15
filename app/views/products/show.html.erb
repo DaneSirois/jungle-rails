@@ -22,22 +22,24 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
-          <dd> <% @product.reviews.reverse.each do |review| %>
-          <% @review = review %>
-          <%= @review.rating %> </dd>
-          <% end %>
+          <dt>Average Rating </dt>
+          <dd><%= @product.average_rating %> </dd>
         </dl>
       </div>
 
       <div class="col-sm-8 review-container">
        <div class="review-input">
+       <% if @user_reviewed %>
+        <%= "You have already commented" %>
+       <% else %>
         <%= form_for [@product, @review] do |f| %>
           <p> <%= f.label :rating %> </p>
           <p> <%= f.select :rating, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]  %> </p>
           <p> <%= f.label :description %> </p>
           <p> <%= f.text_area :description %> </p>
-         <p> <%= f.submit "Submit Review" %> </p>
-        <% end %>
+          <p> <%= f.submit "Submit Review" %> </p>
+          <% end %>
+      <% end %>
     </div>
       <p>Comments: </p>
       <ul class="review-list">
